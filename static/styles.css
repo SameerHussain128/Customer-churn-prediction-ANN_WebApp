@@ -1,0 +1,133 @@
+/* Main Layout */
+.main-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 25px;
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Developer Info and Images */
+.left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.developer-info {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+}
+
+.developer-info h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.developer-info p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+}
+
+/* Image Display */
+.image-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.image-display img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    font-size: 0.95rem;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+/* Form Groups */
+.form-columns-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
