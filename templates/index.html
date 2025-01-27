@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-bottom: 5px solid #0056b3;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            height: calc(100vh - 70px);
+            padding: 20px;
+        }
+
+        /* Left Sidebar */
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Developer Info */
+        .developer-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .developer-info h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .developer-info p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        /* Images */
+        .image-display {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .image-display img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Container */
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        /* Form Layout */
+        .form-columns-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-links img {
+            width: 30px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Customer Churn Prediction</h1>
+        <p>Predict if a customer is likely to churn based on their details.</p>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="main-container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="developer-info">
+                <h2>Developer Details</h2>
+                <p>Name: <strong>Mohd Sameer Hussain</strong></p>
+                <p>Call/WhatsApp: <strong>6303452296</strong></p>
+                <p>Email: <strong>mohdsameerhussain28@gmail.com</strong></p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/mohdsameer28" target="_blank">
+                        <img src="/static/linkedin.png" alt="LinkedIn">
+                    </a>
+                    <a href="https://github.com/SameerHussain128?tab=repositories" target="_blank">
+                        <img src="/static/github.png" alt="GitHub">
+                    </a>
+                </div>
+            </div>
+            <div class="image-display">
+                <img src="/static/c1.png" alt="Churn Image 1">
+                <img src="/static/c2.png" alt="Churn Image 2">
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <h2>Enter Customer Details</h2>
+            <form id="churnForm">
+                <div class="form-columns-container">
+                    <!-- Left Column -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="InternetService">Internet Service</label>
+                            <select id="InternetService" name="InternetService">
+                                <option value="InternetService_DSL">DSL</option>
+                                <option value="InternetService_Fiber optic">Fiber Optic</option>
+                                <option value="InternetService_No">No Internet Service</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Contract">Contract</label>
+                            <select id="Contract" name="Contract">
+                                <option value="Contract_Month-to-month">Month-to-month</option>
+                                <option value="Contract_One year">One year</option>
+                                <option value="Contract_Two year">Two years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="PaymentMethod">Payment Method</label>
+                            <select id="PaymentMethod" name="PaymentMethod">
+                                <option value="PaymentMethod_Bank transfer (automatic)">Bank Transfer (Automatic)</option>
+                                <option value="PaymentMethod_Credit card (automatic)">Credit Card (Automatic)</option>
+                                <option value="PaymentMethod_Electronic check">Electronic Check</option>
+                                <option value="PaymentMethod_Mailed check">Mailed Check</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <input type="text" id="gender" name="gender" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="SeniorCitizen">Senior Citizen</label>
+                            <input type="text" id="SeniorCitizen" name="SeniorCitizen" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Partner">Partner</label>
+                            <input type="text" id="Partner" name="Partner" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Dependents">Dependents</label>
+                            <input type="text" id="Dependents" name="Dependents" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenure">Tenure</label>
+                            <input type="text" id="tenure" name="tenure" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhoneService">Phone Service</label>
+                            <input type="text" id="PhoneService" name="PhoneService" required>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="MultipleLines">Multiple Lines</label>
+                            <input type="text" id="MultipleLines" name="MultipleLines" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="OnlineSecurity">Online Security</label>
+                            <input type="text" id="OnlineSecurity" name="OnlineSecurity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="OnlineBackup">Online Backup</label>
+                            <input type="text" id="OnlineBackup" name="OnlineBackup" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="DeviceProtection">Device Protection</label>
+                            <input type="text" id="DeviceProtection" name="DeviceProtection" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="TechSupport">Tech Support</label>
+                            <input type="text" id="TechSupport" name="TechSupport" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="StreamingTV">Streaming TV</label>
+                            <input type="text" id="StreamingTV" name="StreamingTV" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="StreamingMovies">Streaming Movies</label>
+                            <input type="text" id="StreamingMovies" name="StreamingMovies" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="PaperlessBilling">Paperless Billing</label>
+                            <input type="text" id="PaperlessBilling" name="PaperlessBilling" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="MonthlyCharges">Monthly Charges</label>
+                            <input type="text" id="MonthlyCharges" name="MonthlyCharges" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="TotalCharges">Total Charges</label>
+                            <input type="text" id="TotalCharges" name="TotalCharges" required>
+                        </div>
+                    </div>
+                </div>
+                <button id="predictButton">Predict</button>
+                <p id="result"></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("predictButton").addEventListener("click", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(document.getElementById("churnForm"));
+            const data = {};
+
+            formData.forEach((value, key) => {
+                data[key] = isNaN(value) ? value : parseFloat(value);
+            });
+
+            try {
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+                const resultElement = document.getElementById("result");
+
+                if (response.ok) {
+                    resultElement.textContent = `Prediction: ${result.prediction}, Probability: ${(result.probability * 100).toFixed(2)}%`;
+                } else {
+                    resultElement.textContent = `Error: ${result.error}`;
+                }
+            } catch (error) {
+                document.getElementById("result").textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
