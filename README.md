@@ -4,7 +4,7 @@ Developed a machine learning and deep learning model that predicts customer chur
 ---
 📌 **Goal**
 
-The goal of this project is to predict whether a customer will churn (stop using the service) based on their demographic and behavioral data, enabling businesses to take preventive actions.
+The goal of this project is to use an Artificial Neural Network (ANN) to classify customers as "Churn" or "No Churn" based on their demographic, service usage, and payment details. The model is designed to assist businesses in reducing churn rates and increasing customer satisfaction.
 
 ---
 
@@ -21,28 +21,29 @@ The goal of this project is to predict whether a customer will churn (stop using
 ### Input Form
 This is the input form where users can provide customer details:
 
-![Input Form](static/interface.png)
+![Input Form](screenshots/s1.png)
 
 ---
 
-### Prediction Result - Not Likely to Churn
-When the model predicts the customer is **not likely to churn** (Green):
+### Prediction Result
+Model prediction
 
-![Prediction Result - Not Churn](static/not_churn.png)
+![Prediction Result](screenshots/s2.png)
 
 ---
 
-### Prediction Result - Likely to Churn
-When the model predicts the customer is **likely to churn** (Red):
+### Streamlit Result
 
-![Prediction Result - Churn](static/churn.png)
+![Streamlit Result](screenshots/s3.png)
+
+![Streamlit Result](screenshots/s4.png)
 
 
 📝 **Description**
 ### 1. **Data Processing**
 The dataset includes customer demographic and account details.
 Preprocessing steps include:
-- Encoding categorical variables (Gender, Geography).
+- Encoding categorical variables.
 - Feature scaling for numerical columns.
 - Splitting data into training and testing sets.
 
@@ -53,18 +54,22 @@ Built using an Artificial Neural Network (ANN) with the following architecture:
 - **Output layer**: A single neuron with sigmoid activation for binary classification.
 
 ### 3. **Web Application**
-Frontend: Built with HTML, CSS, and Flask.
-Features:
-- User input forms for customer details.
-- Real-time predictions displayed with visual feedback:
-  - **Green** for "Not Likely to Churn."
-  - **Red** for "Likely to Churn."
-- Developer information in the footer for easy contact.
+Frontend: Built with HTML, CSS, Javascript and Flask.
+
+### Deployment:
+* Flask: The model was initially deployed using Flask, enabling a user-friendly web interface.
+* Streamlit: The final deployment was done using Streamlit for enhanced interactivity and simplicity.
+  
+Features Used:
+Categorical features: Internet service, contract type, payment method.
+Numerical features: Monthly charges, total charges, tenure, etc.
+Prediction: The model predicts the likelihood of churn and displays the result as "Churn" or "No Churn" with a probability percentage.
 
 ---
 
 🔍 **Results**
 - The model achieves high accuracy on the test set, effectively predicting customer churn.
+- Model predicting the result with accurately whether customer churn or not churn on provided features by user.
 - Web application provides an intuitive interface for users to test predictions with real-time feedback.
 
 
@@ -76,8 +81,15 @@ Customer retention is crucial for business growth and profitability. Churn predi
 - Formulate personalized strategies to retain these customers.
 - Save costs associated with acquiring new customers.
 
-This project aims to bridge the gap between predictive analytics and actionable insights by combining machine learning and web deployment.
+This project aims to bridge the gap between predictive analytics and actionable insights by combining machine learning, deep learning and web deployment.
 
+## 🛠️ Technologies Used
+* Backend: Flask, Python Programming
+* Frontend: HTML, CSS and Javascript
+* Machine Learning Model: Linear Regression (Trained using scikit-learn)
+* Deep Learning Model Optimizers - Adam, Relu,Relu, Sigmoid layers
+* Database: SQLite for future enhancements
+* IDE: Visual Studio Code and Jupyter notebook, Google colabs
 
 ### Developer
 For more details or any questions, feel free to contact the developer.
